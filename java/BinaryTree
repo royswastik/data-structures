@@ -1,0 +1,12 @@
+class BinaryTree{
+
+  static class Node<E>{
+      public E data;
+      public Node<E> leftChild;
+      public Node<E> leftChild;
+      Node<E>(E data){
+        this.data = data;
+      }
+  }
+
+}

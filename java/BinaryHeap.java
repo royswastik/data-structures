@@ -36,17 +36,17 @@ class BinaryHeap{
             return (leftChild(pos) > size);
         }
         
-        public void heapify(int pos){
+        public void heapifyDown(int pos){
             if(!isLeaf(pos)){
                 int l = leftChild(pos);
                 int r = rightChild(pos);
                 if(array[l] > array[pos] && ((r < size && array[l] >= array[r]) || r > size)){
                     swap(l,pos);
-                    heapify(l);
+                    heapifyDown(l);
                 }
                 else if(array[r] > array[pos] && array[r] >= array[l] && r < size){
                     swap(r,pos);
-                    heapify(r);
+                    heapifyDown(r);
                 }
             }
         }
@@ -65,7 +65,7 @@ class BinaryHeap{
             int data = array[size];
             array[0] = data;
             size--;
-            heapify(0);
+            heapifyDown(0);
             return response;
         }
         

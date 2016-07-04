@@ -32,17 +32,26 @@ class BinaryHeap{
             array[pos2] = temp;
         }
         
+        public boolean isLeaf(int pos){
+            return (leftChild(pos) > size);
+        }
+        
         public void heapify(int pos){
-            if(pos == 1){
-                return;
-            }
-            if(array[pos]<array[parent(pos)]){
-                swap(pos, parent(pos)
-                heapify(parent(pos));
+            if(!isLeaf(pos)){
+                int l = leftChild(pos);
+                int r = rightChild(pos);
+                if(array[l] > array[pos] && ((r < size && array[l] >= array[r]) || r > size)){
+                    swap(l,pos);
+                    heapify(l);
+                }
+                else if(array[r] > array[pos] && array[r] >= array[l] && r < size){
+                    swap(r,pos);
+                    heapify(r);
+                }
             }
         }
         
-        public insert(int element){
+        public void insert(int element){
             array[++size] = element;
             int current = size;
             while(array[current] < array[parent(pos)]){
@@ -51,7 +60,13 @@ class BinaryHeap{
             }
         }
         
-        public delete(){
+        public int extract(){
+            int response = array[0];
+            int data = array[size];
+            array[0] = data;
+            size--;
+            heapify(0);
+            return response;
         }
         
     }
